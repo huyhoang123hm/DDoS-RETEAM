@@ -5,7 +5,6 @@ if check=='5':
     a=a+requests.get(url='https://gist.githubusercontent.com/Azuures/1e0cb7a1097c720b4ed2aa63acd82179/raw/97d2d6a11873ffa8ca763763f7a5dd4035bcf95f/fwefnwex').text.strip()+'\n'
     a=a+requests.get(url='https://api.proxyscrape.com/?request=displayproxies&proxytype=socks5&country=all').text.strip()+'\n'
     a=a+requests.get(url='https://raw.githubusercontent.com/TheSpeedX/PROXY-List/master/socks5.txt').text.strip()+'\n'
-    a=a+requests.get(url='https://raw.githubusercontent.com/monosans/proxy-list/main/proxies/socks5.txt').text.strip()+'\n'
     file=open('socks4.txt','w')
     file.write(a)
     file.close()

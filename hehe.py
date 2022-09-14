@@ -82,5 +82,5 @@ def main123():
 
 import multiprocessing
 print("Attacking...")
-for i in range(0,2):
+for i in range(0,6):
     multiprocessing.Process(target=main123).start()
